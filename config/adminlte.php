@@ -241,6 +241,13 @@ return [
             'label'       =>  null,
             'label_color' => 'success',
         ],
+        [
+            'text'        => 'Emails',
+            'url'         => '/mails',
+            'icon'        => 'far fa-fw fa-file',
+            'label'       =>  null,
+            'label_color' => 'success',
+        ],
         ['header' => 'account_settings'],
         [
             'text' => 'profile',

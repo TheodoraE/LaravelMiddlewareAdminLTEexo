@@ -16,8 +16,8 @@ class MailController extends Controller
      */
     public function index()
     {
-        
-        return view('pages.contact.contact');
+        $mails = Mail::all();
+        return view('pages.contact.contact', compact('mails'));
     }
 
     /**
@@ -38,6 +38,12 @@ class MailController extends Controller
      */
     public function store(Request $request)
     {
+        $store = new Mail;
+        $store->email = $request->email;
+        $store->contenu = $request->contenu;
+        $store->subject = $request->subject;
+        $store->save();
+        
         FacadesMail::to('tidoraa@gmail.com')->send(new MailSend($request));
         return redirect()->back();
     }
