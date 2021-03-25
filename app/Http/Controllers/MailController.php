@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\MailSend;
+use App\Models\EmailSubject;
 use App\Models\Mail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail as FacadesMail;
@@ -27,7 +28,8 @@ class MailController extends Controller
      */
     public function create()
     {
-        return view('pages.contact.createContact');
+        $emailSubjects = EmailSubject::all();
+        return view('pages.contact.createContact', compact('emailSubjects'));
     }
 
     /**
@@ -41,9 +43,9 @@ class MailController extends Controller
         $store = new Mail;
         $store->email = $request->email;
         $store->contenu = $request->contenu;
-        $store->subject = $request->subject;
+        $store->subject_id = $request->subject_id;
         $store->save();
-        
+
         FacadesMail::to('tidoraa@gmail.com')->send(new MailSend($request));
         return redirect()->back();
     }

@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\EmailSubject;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -19,9 +20,10 @@ class MailSend extends Mailable
      */
     public function __construct($request)
     {
+        $subjectId = EmailSubject::find($request->subject_id);
         $this->email = $request->email;
         $this->contenu = $request->contenu;
-        $this->subject = $request->subject;
+        $this->subject = $subjectId->subject;
     }
 
     /**

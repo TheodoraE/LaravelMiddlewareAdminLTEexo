@@ -14,7 +14,11 @@
 
             <div class="form-group">
                 <label for="suject">Subject :</label>
-                <input type="text" name="subject" class="form-control border w-50">
+                <select name="subject_id" id="">
+                    @foreach ($emailSubjects as $subject)
+                        <option value="{{$subject->id}}">{{$subject->subject}}</option>
+                    @endforeach
+                </select>
             </div>
 
             <div class="form-group">

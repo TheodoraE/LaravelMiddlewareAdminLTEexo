@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Mail extends Model
+class EmailSubject extends Model
 {
     use HasFactory;
-    public function mailSubjects()
+    public function mails()
     {
-        return $this->belongsTo(EmailSubject::class, 'subject_id');
+        return $this->hasMany(Mail::class, 'subject_id');
     }
 }
