@@ -9,6 +9,6 @@
 <body>
     <span class="text-secondary"> Vous avez un message de la part de : <b>{{$emailClient}}</b></span>
     <p>{{$emailMessage}}</p> 
-    
+
 </body>
 </html>

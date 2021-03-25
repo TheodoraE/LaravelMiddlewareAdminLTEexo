@@ -26,7 +26,7 @@ Dans le projet middleware
 - Créez une page contact dans la partie siteweb qui contient un formulaire de contact "Adresse Email" et "Message"
 - Ce formulaire de contact vous envoi un mail avec l’adresse email et le message de la personne
 
-aravel_mail_exo_3
+Laravel_mail_exo_3
 Continuez dans le même projet
 - Designez le mail avec du css
 - Ajoutez un input 'sujet' (sujet du mail) dans le formulaire de contact

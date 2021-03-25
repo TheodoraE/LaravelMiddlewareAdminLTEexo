@@ -11,6 +11,12 @@
                 <label for="email">Your email addres :</label>
                 <input type="text" name="email" class="form-control border w-50">
             </div>
+
+            <div class="form-group">
+                <label for="suject">Subject :</label>
+                <input type="text" name="subject" class="form-control border w-50">
+            </div>
+
             <div class="form-group">
                 <label for="contenu">Your message :</label>
                 <textarea name="contenu" id="contenu" cols="100" rows="5" class="form-control border">What do you want to tell us...</textarea>

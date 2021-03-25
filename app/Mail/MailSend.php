@@ -10,6 +10,7 @@ use Illuminate\Queue\SerializesModels;
 class MailSend extends Mailable
 {
     use Queueable, SerializesModels;
+    public $subject;
 
     /**
      * Create a new message instance.
@@ -20,6 +21,7 @@ class MailSend extends Mailable
     {
         $this->email = $request->email;
         $this->contenu = $request->contenu;
+        $this->subject = $request->subject;
     }
 
     /**
@@ -29,6 +31,6 @@ class MailSend extends Mailable
      */
     public function build()
     {
-        return $this->from($this->email)->view('template.templateEmail')->with(['emailClient' => $this->email, 'emailMessage' => $this->contenu]);
+        return $this->from($this->email)->subject($this->subject)->view('template.templateEmail')->with(['emailClient' => $this->email, 'emailMessage' => $this->contenu]);
     }
 }
