@@ -2,17 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Article;
+use App\Mail\MailSend;
+use App\Models\Mail;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail as FacadesMail;
 
-class ArticleController extends Controller
+class MailController extends Controller
 {
-    public function __construct(){
-        $this->middleware("isAdmin");
-        $this->middleware("redactor")->only("edit", "update", "destroy");
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -20,8 +16,8 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Article::all();
-        return view('welcome', compact('articles'));
+        
+        return view('pages.contact.contact');
     }
 
     /**
@@ -31,7 +27,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        return view('pages.createArticle');
+        return view('pages.contact.createContact');
     }
 
     /**
@@ -42,32 +38,28 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        $store = new Article;
-        $store->title = $request->title;
-        $store->text = $request->text;
-        $store->user_id = Auth::user()->id;
-        $store->save();
-        return redirect('/');
+        FacadesMail::to('tidoraa@gmail.com')->send(new MailSend($request));
+        return redirect()->back();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Article  $article
+     * @param  \App\Models\Mail  $mail
      * @return \Illuminate\Http\Response
      */
-    public function show(Article $article)
+    public function show(Mail $mail)
     {
-        return view('pages.showArticle', compact('article'));
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Article  $article
+     * @param  \App\Models\Mail  $mail
      * @return \Illuminate\Http\Response
      */
-    public function edit(Article $article)
+    public function edit(Mail $mail)
     {
         //
     }
@@ -76,10 +68,10 @@ class ArticleController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Article  $article
+     * @param  \App\Models\Mail  $mail
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Article $article)
+    public function update(Request $request, Mail $mail)
     {
         //
     }
@@ -87,10 +79,10 @@ class ArticleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Article  $article
+     * @param  \App\Models\Mail  $mail
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Article $article)
+    public function destroy(Mail $mail)
     {
         //
     }
